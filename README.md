@@ -1,4 +1,4 @@
-fingure-gesture
+finger-gestures
 ===============
 
 # Description
