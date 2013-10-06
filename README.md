@@ -1,2 +1,2 @@
-fingure-gesture
+finger-gestures
 ===============
