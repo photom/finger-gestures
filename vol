@@ -1,0 +1,28 @@
+#!/bin/bash
+
+MIXER=`which amixer`
+TARGET=Master
+#echo "0:$0 1:$1 2:$2"
+if [ -z $MIXER ]; then
+    echo "amixer not found"
+    exit 1
+fi
+
+vol=`$MIXER get $TARGET | awk '/Front Left/{print substr($5, 2,length($5)-3)}'`
+declare -i voli=$vol
+
+DIST="$1"
+if [ "$DIST" = "u" ]; then
+    volii=`expr $voli + 1`
+    #echo "$MIXER set $TARGET $volii%"
+    $MIXER set $TARGET "$volii%" > /dev/null
+    exit 0
+fi
+if [ "$DIST" = "d" ]; then
+    volii=`expr $voli - 1`
+    #echo "$MIXER set $TARGET $volii%"
+    $MIXER set $TARGET "$volii%" > /dev/null
+    exit 0
+fi
+
+exit 1
